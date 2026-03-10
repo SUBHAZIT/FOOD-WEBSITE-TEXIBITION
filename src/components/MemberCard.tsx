@@ -4,7 +4,7 @@ import { useApproveFood } from "@/hooks/useMembers";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, Leaf, Drumstick, AlertTriangle, ChevronDown, ChevronUp } from "lucide-react";
+import { Check, X, AlertTriangle, ChevronDown, ChevronUp } from "lucide-react";
 import { toast } from "sonner";
 
 interface MemberCardProps {
@@ -26,8 +26,6 @@ const MemberCard = ({ member, operatorName }: MemberCardProps) => {
     );
   };
 
-  const isVeg = member.food_type === "Veg";
-
   return (
     <Card
       className="border shadow-sm transition-all duration-200 hover:shadow-md animate-fade-in"
@@ -36,10 +34,8 @@ const MemberCard = ({ member, operatorName }: MemberCardProps) => {
       <CardContent className="p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 min-w-0">
-            <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${isVeg ? "bg-success" : "bg-destructive"}`} />
             <div className="min-w-0">
               <p className="font-heading font-semibold text-sm text-foreground truncate uppercase">{member.name}</p>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wide">{member.position} • {member.food_type}</p>
             </div>
           </div>
           <div className="flex items-center gap-1.5 shrink-0">
@@ -55,11 +51,6 @@ const MemberCard = ({ member, operatorName }: MemberCardProps) => {
 
         {expanded && (
           <div className="mt-3 pt-3 border-t space-y-3 animate-fade-in" onClick={e => e.stopPropagation()}>
-            <div className="flex items-center gap-2 text-sm">
-              {isVeg ? <Leaf className="w-4 h-4 text-success" /> : <Drumstick className="w-4 h-4 text-destructive" />}
-              <span className="font-medium text-foreground uppercase">{member.food_type}</span>
-            </div>
-
             <div className="grid grid-cols-2 gap-2">
               <div>
                 <Button

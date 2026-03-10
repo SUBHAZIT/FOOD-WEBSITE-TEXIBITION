@@ -1,6 +1,6 @@
 import { useStats } from "@/hooks/useMembers";
 import { Card, CardContent } from "@/components/ui/card";
-import { Users, UtensilsCrossed, Leaf, Drumstick, CalendarCheck, CalendarX } from "lucide-react";
+import { Users, UtensilsCrossed, CalendarCheck, CalendarX } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const StatsCards = () => {
@@ -23,8 +23,6 @@ const StatsCards = () => {
     { label: "FOOD GIVEN", value: stats.totalFood, icon: UtensilsCrossed, color: "text-secondary" },
     { label: "DAY 1", value: stats.day1, icon: CalendarCheck, color: "text-success" },
     { label: "DAY 2", value: stats.day2, icon: CalendarCheck, color: "text-accent" },
-    { label: "VEG", value: stats.veg, icon: Leaf, color: "text-success" },
-    { label: "NON VEG", value: stats.nonVeg, icon: Drumstick, color: "text-destructive" },
     { label: "PRESENT", value: stats.present, icon: CalendarCheck, color: "text-primary" },
     { label: "ABSENT", value: stats.absent, icon: CalendarX, color: "text-muted-foreground" },
   ];

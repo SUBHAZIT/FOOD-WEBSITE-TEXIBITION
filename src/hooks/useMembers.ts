@@ -20,8 +20,13 @@ export function useMembers(search?: string) {
 export function useAddMember() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: async (member: { name: string; position: string; food_type: string }) => {
-      const { error } = await supabase.from("members").insert(member);
+    mutationFn: async (member: { name: string; position?: string; food_type?: string }) => {
+      const memberData = {
+        name: member.name,
+        position: member.position || "Volunteer",
+        food_type: member.food_type || "Veg",
+      };
+      const { error } = await supabase.from("members").insert(memberData);
       if (error) throw error;
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["members"] }),
